@@ -10,5 +10,6 @@ fun loop() {
                 if (spawn.canCreateCreep(listOf(CreepPart.MOVE, CreepPart.CARRY)) == Status.OK)
                     println("${spawn.name} could spawn something")
             }
+    println("Still ${Game.cpu.bucket} CPU left in bucket")
     println("Used ${Game.cpu.getUsed()} CPU doing basically nothing")
 }
