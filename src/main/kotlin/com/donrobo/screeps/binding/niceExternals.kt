@@ -3,7 +3,6 @@ package com.donrobo.screeps.binding
 import com.donrobo.screeps.binding.externals.Game
 import com.donrobo.screeps.binding.externals.SpawningValue
 import com.donrobo.screeps.binding.externals.StructureSpawn
-import toMap
 
 class GameKt {
     companion object {

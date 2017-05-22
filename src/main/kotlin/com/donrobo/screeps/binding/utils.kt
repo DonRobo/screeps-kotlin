@@ -1,3 +1,5 @@
+package com.donrobo.screeps.binding
+
 import kotlin.js.Json
 
 fun toMap(jsObject: Json): Map<String, Any?> {
