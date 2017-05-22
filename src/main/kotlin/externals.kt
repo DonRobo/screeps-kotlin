@@ -1,7 +1,9 @@
+import kotlin.js.Json
+
 external val Game: GameClass
 
 external class GameClass {
-    val spawns: Any
+    val spawns: Json
 }
 
 external class StructureSpawn {
