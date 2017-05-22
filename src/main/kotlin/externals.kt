@@ -10,10 +10,10 @@ external class Owner
 class Creep
 
 // Singletons
-external val Game: GameClass
+external val Game: InternalGameClass
 
 // Classes
-external class GameClass {
+external class InternalGameClass {
     val spawns: Json
 }
 
@@ -38,8 +38,8 @@ external open class OwnedStructure : Structure {
 }
 
 external class StructureSpawn : OwnedStructure {
-    val energy: Number
-    val energyCapacity: Number
+    val energy: Int
+    val energyCapacity: Int
     val memory: Any
     val name: String
     val spawning: SpawningValue
