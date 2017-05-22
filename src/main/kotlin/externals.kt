@@ -18,9 +18,8 @@ external class GameClass {
 }
 
 external open class RoomObject {
-    var prototype: RoomObject
-    var pos: RoomPosition
-    var room: Room?
+    val pos: RoomPosition
+    val room: Room?
 }
 
 external open class Structure : RoomObject {
@@ -34,16 +33,16 @@ external open class Structure : RoomObject {
 }
 
 external open class OwnedStructure : Structure {
-    var my: Boolean
-    var owner: Owner
+    val my: Boolean
+    val owner: Owner
 }
 
 external class StructureSpawn : OwnedStructure {
-    var energy: Number
-    var energyCapacity: Number
-    var memory: Any
-    var name: String
-    var spawning: SpawningValue
+    val energy: Number
+    val energyCapacity: Number
+    val memory: Any
+    val name: String
+    val spawning: SpawningValue
     fun canCreateCreep(body: Array<String>, name: String? = definedExternally): Number
     fun createCreep(body: Array<String>, name: String? = definedExternally, memory: Any? = definedExternally): dynamic /* Number | String */
     fun renewCreep(target: Creep): Number
