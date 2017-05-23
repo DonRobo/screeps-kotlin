@@ -11,6 +11,7 @@ external class Creep
 
 // Singletons
 external val Game: InternalGameClass
+external val Memory: Json
 
 // Classes
 external class InternalGameClass {

@@ -1,9 +1,7 @@
 package com.donrobo.screeps.binding
 
-import com.donrobo.screeps.binding.externals.ConstructionSite
-import com.donrobo.screeps.binding.externals.Game
-import com.donrobo.screeps.binding.externals.Structure
-import com.donrobo.screeps.binding.externals.StructureSpawn
+import com.donrobo.screeps.binding.externals.*
+import kotlin.js.Json
 
 class GameKt {
     companion object {
@@ -20,6 +18,49 @@ class GameKt {
             get() {
                 return toMap(Game.constructionSites) as Map<String, ConstructionSite>
             }
+    }
+}
+
+class MemoryAccess private constructor(private val rawMemory: Json) {
+
+    @Suppress("UNCHECKED_CAST_TO_NATIVE_INTERFACE")
+    operator fun get(key: String): MemoryAccess {
+        var prop: dynamic = rawMemory[key]
+
+        if (prop == null) {
+            prop = js("new Object()")
+            rawMemory[key] = prop
+        }
+
+        if (prop is String || prop is Number)
+            throw RuntimeException("Expected object")
+
+        return MemoryAccess(prop)
+    }
+
+    fun getString(key: String): String? {
+        val string: dynamic = rawMemory[key]
+        return string
+    }
+
+    fun getInt(key: String): Int? {
+        val integer: dynamic = rawMemory[key]
+        return integer
+    }
+
+    operator fun set(key: String, value: Any) {
+        rawMemory[key] = value
+    }
+
+    companion object {
+        private var instance: MemoryAccess? = null
+
+        fun instance(): MemoryAccess {
+            if (instance == null) {
+                instance = MemoryAccess(Memory)
+            }
+            return instance as MemoryAccess
+        }
     }
 }
 
