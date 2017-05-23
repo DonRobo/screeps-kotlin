@@ -22,7 +22,8 @@ fun loop() {
         }
     }
     GameKt.constructionSites.values.forEach { constructionSite ->
-        println("${constructionSite.structureType} being built")
+        //        println("${constructionSite.structureType} being built")
+        constructionSite.id
     }
     println("CPU: ${Game.cpu.getUsed()}")
 }
