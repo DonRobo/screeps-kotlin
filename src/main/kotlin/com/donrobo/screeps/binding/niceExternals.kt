@@ -18,6 +18,10 @@ class GameKt {
             get() {
                 return toMap(Game.constructionSites) as Map<String, ConstructionSite>
             }
+        val creeps: Map<String, Creep>
+            get() {
+                return toMap(Game.creeps) as Map<String, Creep>
+            }
     }
 }
 

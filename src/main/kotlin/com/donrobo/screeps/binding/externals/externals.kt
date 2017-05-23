@@ -15,11 +15,11 @@ external val Memory: Json
 
 // Classes
 external class InternalGameClass {
-
     val spawns: Json
     val cpu: CpuValue
     val structures: Json
     val constructionSites: Json
+    val creeps: Json
 }
 
 external class Owner {
