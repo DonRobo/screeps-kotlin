@@ -1,14 +1,21 @@
 package com.donrobo.screeps.binding
 
-import com.donrobo.screeps.binding.externals.Game
-import com.donrobo.screeps.binding.externals.SpawningValue
-import com.donrobo.screeps.binding.externals.StructureSpawn
+import com.donrobo.screeps.binding.externals.*
 
 class GameKt {
     companion object {
         val spawns: Map<String, StructureSpawnKt>
             get() {
                 return (toMap(Game.spawns) as Map<String, StructureSpawn>).mapValues { StructureSpawnKt(it.value) }
+            }
+
+        val structures: Map<String, Structure>
+            get() {
+                return toMap(Game.structures) as Map<String, Structure>
+            }
+        val constructionSites: Map<String, ConstructionSite>
+            get() {
+                return toMap(Game.constructionSites) as Map<String, ConstructionSite>
             }
     }
 }
@@ -20,13 +27,13 @@ class StructureSpawnKt(val structureSpawn: StructureSpawn) {
     val name: String get() = structureSpawn.name
     val spawning: SpawningValue get() = structureSpawn.spawning
     fun canCreateCreep(body: List<CreepPart>, name: String? = null): Status {
-        val status = structureSpawn.canCreateCreep(body.map { it.value }.toTypedArray(), name)
+        val status = structureSpawn.canCreateCreep(body.asSequence().map { it.value }.toJsArray(), name)
 
         return Status.fromValue(status)
     }
 
     fun createCreep(body: List<CreepPart>, name: String? = null, memory: Any? = null): CreepCreationStatus {
-        val result = structureSpawn.createCreep(body.map { it.value }.toTypedArray(), name, memory)
+        val result = structureSpawn.createCreep(body.asSequence().map { it.value }.toJsArray(), name, memory)
 
         val status: Status
         val resultName: String?

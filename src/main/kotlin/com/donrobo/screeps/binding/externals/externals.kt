@@ -7,8 +7,6 @@ external class Room
 
 external class RoomPosition
 
-external class Owner
-
 external class Creep
 
 // Singletons
@@ -16,8 +14,15 @@ external val Game: InternalGameClass
 
 // Classes
 external class InternalGameClass {
+
     val spawns: Json
     val cpu: CpuValue
+    val structures: Json
+    val constructionSites: Json
+}
+
+external class Owner {
+    val username: String
 }
 
 external class CpuValue {
@@ -30,6 +35,16 @@ external class CpuValue {
 external open class RoomObject {
     val pos: RoomPosition
     val room: Room?
+}
+
+external open class ConstructionSite : RoomObject {
+    val id: String
+    val my: Boolean
+    val owner: Owner
+    val progress: Int
+    val progresssTotal: Int
+    val structureType: String
+    fun remove(): Int
 }
 
 external open class Structure : RoomObject {

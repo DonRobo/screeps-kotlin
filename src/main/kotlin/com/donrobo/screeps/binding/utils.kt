@@ -10,3 +10,9 @@ fun toMap(jsObject: Json): Map<String, Any?> {
 
     return map
 }
+
+fun <T> Sequence<T>.toJsArray(): Array<T> {
+    val array = js("[]")
+    this.forEach { array.push(it) }
+    return array
+}
