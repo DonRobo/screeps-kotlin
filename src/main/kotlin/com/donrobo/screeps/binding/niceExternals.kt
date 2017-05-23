@@ -48,6 +48,16 @@ class MemoryAccess private constructor(private val rawMemory: Json) {
         return integer
     }
 
+    fun delete(key: String) {
+        val rawMemory = this.rawMemory
+        js("delete rawMemory[key]")
+    }
+
+    val keys: Array<String> get() {
+        val rawMemory = this.rawMemory
+        return js("Object.keys(rawMemory)")
+    }
+
     operator fun set(key: String, value: Any) {
         rawMemory[key] = value
     }
