@@ -123,6 +123,7 @@ class MemoryAccess private constructor(private val rawMemory: Json) {
         return string
     }
 
+    @Suppress("UnsafeCastFromDynamic")
     fun getInt(key: String): Int? {
         val integer: dynamic = rawMemory[key]
         return integer
@@ -134,7 +135,7 @@ class MemoryAccess private constructor(private val rawMemory: Json) {
         js("delete rawMemory[key]")
     }
 
-    @Suppress("UNUSED_VARIABLE")
+    @Suppress("UNUSED_VARIABLE", "UnsafeCastFromDynamic")
     val keys: Array<String> get() {
         val rawMemory = this.rawMemory
         return js("Object.keys(rawMemory)")
